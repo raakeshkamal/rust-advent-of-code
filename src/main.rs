@@ -1,6 +1,10 @@
 use regex::{Captures, Regex};
 use std::collections::HashMap;
 use std::{fs, vec};
+use rust_advent_of_code::Runnable;
+
+// Example: To run an active solution, uncomment and adjust:
+// use rust_advent_of_code::active::year2015::dayX::part1::Solution;
 
 fn read_lines(filename: &str) -> Vec<String> {
     fs::read_to_string(filename)
@@ -134,39 +138,6 @@ fn can_evaluate(out_hash_map_ref: &HashMap<&str, u16>, ins: &Instruction) -> (Ex
 }
 
 fn main() {
-    let str_list = read_lines("./src/input.txt");
-    let mut ins_list: Vec<Instruction> = vec![];
-    for str in str_list {
-        let ins: Instruction = parse_string(str);
-        ins_list.push(ins);
-    }
-
-    let mut out_hash_map: HashMap<&str, u16> = HashMap::new();
-    let mut uneval_exp_num = ins_list.len();
-
-    while uneval_exp_num > 0 {
-        for ins in ins_list.iter() {
-            if out_hash_map.contains_key(ins.out.as_str()) {
-                continue;
-            }
-            let (exp, is_exp) = can_evaluate(&out_hash_map, &ins);
-            // dbg!(
-            //     ins.opr1.clone(),
-            //     exp.opr1,
-            //     ins.opr2.clone(),
-            //     exp.opr2,
-            //     exp.op.clone(),
-            //     ins.out.clone(),
-            //     is_exp
-            // );
-            if is_exp {
-                let out = evaluate(&exp);
-                out_hash_map.insert(ins.out.as_str(), out);
-                uneval_exp_num -= 1;
-                // dbg!(out);
-            }
-        }
-        dbg!(uneval_exp_num);
-        dbg!(&out_hash_map);
-    }
+    // Solution::run();
+    println!("Setup complete. Edit main.rs to import and run your active solution.");
 }
